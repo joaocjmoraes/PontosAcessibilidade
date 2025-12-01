@@ -21,8 +21,8 @@ O sistema também calcula automaticamente um Índice de Acessibilidade baseado n
 - Cálculo automático do Índice de Acessibilidade  
 
 ## 🗂 Endpoints da API
-
 | Método | Endpoint | Descrição |
+|--------|----------|-----------|
 | GET | `/pontos-acessibilidade` | Lista todos os pontos |
 | GET | `/pontos-acessibilidade/{id}` | Busca por ID |
 | POST | `/pontos-acessibilidade` | Cria um novo ponto |
@@ -31,7 +31,6 @@ O sistema também calcula automaticamente um Índice de Acessibilidade baseado n
 | GET | `/pontos-acessibilidade/{id}/indice` | Calcula índice de acessibilidade |
 
 ## Cálculo do Índice de Acessibilidade
-
 Cada item soma 25 pontos:
 
 - Possui rampa  
@@ -42,7 +41,6 @@ Cada item soma 25 pontos:
 Total máximo: 100 pontos
 
 ## Modelo da tabela no Oracle
-
 SQL:
 CREATE TABLE pontoacessibilidade (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -61,5 +59,3 @@ CREATE TABLE pontoacessibilidade (
 Projeto desenvolvido por
 João Antônio Campos Jacintho de Oliviera Moraes
 Vinicius Shiro Nishie Kitazawa
-    descricao VARCHAR2(500)
-);
