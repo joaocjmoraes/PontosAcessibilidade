@@ -1,4 +1,3 @@
-# PontosAcessibilidade
 # Sistema de Mapeamento de Pontos de Acessibilidade  
 API REST desenvolvida com Spring Boot
 
@@ -41,7 +40,7 @@ Cada item soma 25 pontos:
 Total máximo: 100 pontos
 
 ## Modelo da tabela no Oracle
-SQL:
+```sql
 CREATE TABLE pontoacessibilidade (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nome_local VARCHAR2(255) NOT NULL,
@@ -54,8 +53,8 @@ CREATE TABLE pontoacessibilidade (
     acessibilidade_geral VARCHAR2(255),
     descricao VARCHAR2(500)
 );
-
+```
 ## Autor:
 Projeto desenvolvido por
-João Antônio Campos Jacintho de Oliviera Moraes
-Vinicius Shiro Nishie Kitazawa
+- João Antônio Campos Jacintho de Oliviera Moraes
+- Vinicius Shiro Nishie Kitazawa
