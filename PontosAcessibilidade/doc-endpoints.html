@@ -276,7 +276,6 @@
     <div class="section">
       <h2>2. Endpoints</h2>
 
-      <!-- GET /pontos-acessibilidade -->
       <div class="endpoint">
         <h3>
           <span class="method GET">GET</span>
@@ -308,13 +307,12 @@
 }</code></pre>
       </div>
 
-      <!-- GET /pontos-acessibilidade/{id} -->
       <div class="endpoint">
         <h3>
           <span class="method GET">GET</span>
-          <span class="path">/pontos-acessibilidade/{id}</span>
+          <span class="path">/pontos-acessibilidade/nome/{nome}</span>
         </h3>
-        <p><strong>Descrição:</strong> Busca um ponto específico de acessibilidade pelo identificador.</p>
+        <p><strong>Descrição:</strong> Busca um ponto específico de acessibilidade pelo nome.</p>
 
         <h4>2.2.1 Parâmetros de rota</h4>
         <table>
@@ -328,10 +326,10 @@
           </thead>
           <tbody>
             <tr>
-              <td><code>id</code></td>
-              <td>number</td>
+              <td><code>Nome</code></td>
+              <td>String</td>
               <td>Sim</td>
-              <td>ID do ponto de acessibilidade a ser consultado.</td>
+              <td>Nome do ponto de acessibilidade a ser consultado.</td>
             </tr>
           </tbody>
         </table>
@@ -339,14 +337,14 @@
         <h4>2.2.2 Respostas</h4>
         <ul>
           <li><strong>200 OK</strong> – Retorna o objeto <code>PontoAcessibilidade</code>.</li>
-          <li><strong>404 Not Found</strong> – Não existe ponto com o ID informado.</li>
+          <li><strong>404 Not Found</strong> – Não existe ponto com o nome informado.</li>
         </ul>
 
         <h4>Exemplo de resposta <span class="small">(200 OK)</span></h4>
         <pre><code>{
   "id": 2,
   "nomeLocal": "Supermercado X",
-  "endereco": "Rua das Flores, 456 - Bairro Norte",
+  "endereco": "Rua Otto Unger, 456 - Bairro Norte",
   "tipoLocal": "COMERCIO",
   "temRampa": true,
   "temBanheiroAdaptado": true,
@@ -358,7 +356,6 @@
 }</code></pre>
       </div>
 
-      <!-- POST /pontos-acessibilidade -->
       <div class="endpoint">
         <h3>
           <span class="method POST">POST</span>
@@ -409,7 +406,6 @@
         </div>
       </div>
 
-      <!-- PUT /pontos-acessibilidade/{id} -->
       <div class="endpoint">
         <h3>
           <span class="method PUT">PUT</span>
@@ -479,7 +475,6 @@
 }</code></pre>
       </div>
 
-      <!-- DELETE /pontos-acessibilidade/{id} -->
       <div class="endpoint">
         <h3>
           <span class="method DELETE">DELETE</span>
@@ -514,67 +509,14 @@
         </ul>
       </div>
 
-      <!-- GET /pontos-acessibilidade/{id}/indice -->
-      <div class="endpoint">
-        <h3>
-          <span class="method GET">GET</span>
-          <span class="path">/pontos-acessibilidade/{id}/indice</span>
-        </h3>
-        <p>
-          <strong>Descrição:</strong>
-          Retorna apenas o índice numérico de acessibilidade calculado para um ponto específico,
-          usando o método de regra de negócio <code>calcularIndiceAcessibilidade()</code>.
-        </p>
-
-        <h4>2.6.1 Parâmetros de rota</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Tipo</th>
-              <th>Obrigatório</th>
-              <th>Descrição</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>id</code></td>
-              <td>number</td>
-              <td>Sim</td>
-              <td>ID do ponto de acessibilidade.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4>2.6.2 Regra de cálculo (resumo)</h4>
-        <ul>
-          <li><code>temRampa == true</code> → +25 pontos</li>
-          <li><code>temBanheiroAdaptado == true</code> → +25 pontos</li>
-          <li><code>temVagaPCD == true</code> → +25 pontos</li>
-          <li><code>possuiObstaculos == false</code> → +25 pontos</li>
-        </ul>
-        <p><strong>Total máximo:</strong> 100 pontos.</p>
-
-        <h4>2.6.3 Respostas</h4>
-        <ul>
-          <li><strong>200 OK</strong> – Retorna um número inteiro (0 a 100).</li>
-          <li><strong>404 Not Found</strong> – Não existe ponto com o ID informado.</li>
-        </ul>
-
-        <h4>Exemplo de resposta <span class="small">(200 OK)</span></h4>
-        <pre><code>75</code></pre>
-      </div>
-    </div>
-
     <div class="section">
       <h2>3. Resumo Rápido dos Endpoints</h2>
       <ul>
         <li><span class="method GET">GET</span> <code>/pontos-acessibilidade</code> — Lista todos os pontos.</li>
-        <li><span class="method GET">GET</span> <code>/pontos-acessibilidade/{id}</code> — Busca um ponto por ID.</li>
+        <li><span class="method GET">GET</span> <code>/pontos-acessibilidade/nome/{nome}</code> — Busca um ponto por nome.</li>
         <li><span class="method POST">POST</span> <code>/pontos-acessibilidade</code> — Cria um novo ponto.</li>
         <li><span class="method PUT">PUT</span> <code>/pontos-acessibilidade/{id}</code> — Atualiza um ponto existente.</li>
         <li><span class="method DELETE">DELETE</span> <code>/pontos-acessibilidade/{id}</code> — Exclui um ponto.</li>
-        <li><span class="method GET">GET</span> <code>/pontos-acessibilidade/{id}/indice</code> — Retorna somente o índice de acessibilidade do ponto.</li>
       </ul>
     </div>
   </div>
