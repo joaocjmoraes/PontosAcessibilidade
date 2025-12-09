@@ -19,6 +19,7 @@ const checkPossuiObstaculos = document.getElementById("possuiObstaculos");
 const selectAcessibilidadeGeral = document.getElementById("acessibilidadeGeral");
 const textDescricao = document.getElementById("descricao");
  
+const btnSairFiltro = document.getElementById("btn-sair-filtro");
 const btnLimpar = document.getElementById("btn-limpar");
 const btnBuscarNome = document.getElementById("btn-buscar-nome");
 const tbody = document.getElementById("pontos-tbody");
@@ -181,12 +182,13 @@ async function carregarPontos() {
     setStatusMessage("Erro ao carregar pontos de acessibilidade.");
   }
 }
- 
+
 async function buscarPontoPorNome() {
   const nome = inputBuscaNome.value.trim();
 
   if (!nome) {
     setStatusMessage("Digite um nome para buscar.");
+    btnSairFiltro.style.display = "none";
     return;
   }
 
@@ -208,11 +210,21 @@ async function buscarPontoPorNome() {
     renderizarTabela(lista);
 
     setStatusMessage(`${lista.length} ponto(s) encontrado(s).`);
+    btnSairFiltro.style.display = "inline-block";
   } catch (error) {
     console.error(error);
     setStatusMessage("Erro ao buscar ponto por nome.");
   }
 }
+
+btnSairFiltro.addEventListener("click", () => {
+  inputBuscaNome.value = "";
+  statusMessage.textContent = "";
+  btnSairFiltro.style.display = "none";
+
+  carregarPontos();
+});
+
 
 btnBuscarNome.addEventListener("click", buscarPontoPorNome);
  
@@ -298,5 +310,5 @@ btnLimpar.addEventListener("click", (e) => {
   e.preventDefault();
   limparFormulario();
 });
-
+ 
 carregarPontos();
