@@ -23,7 +23,7 @@ O sistema também calcula automaticamente um Índice de Acessibilidade baseado n
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
 | GET | `/pontos-acessibilidade` | Lista todos os pontos |
-| GET | `/pontos-acessibilidade/{id}` | Busca por ID |
+| GET | `/pontos-acessibilidade/nome/{nome}` | Busca por nome |
 | POST | `/pontos-acessibilidade` | Cria um novo ponto |
 | PUT | `/pontos-acessibilidade/{id}` | Atualiza um ponto |
 | DELETE | `/pontos-acessibilidade/{id}` | Remove um ponto |
