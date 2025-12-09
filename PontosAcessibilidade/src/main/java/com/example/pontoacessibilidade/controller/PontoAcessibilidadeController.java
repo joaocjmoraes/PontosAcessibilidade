@@ -24,6 +24,16 @@ public class PontoAcessibilidadeController {
         return service.listarTodos();
     }
 
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<?> buscarPorNome(@PathVariable String nome) {
+        List<PontoAcessibilidade> lista = service.buscarPorNome(nome);
+
+    if (lista.isEmpty()) {
+        return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(lista);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
         try {
@@ -76,3 +86,4 @@ public class PontoAcessibilidadeController {
         }
     }
 }
+
