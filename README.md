@@ -10,13 +10,14 @@ O sistema também calcula automaticamente um Índice de Acessibilidade baseado n
 - Spring Web
 - Oracle Database 
 - Maven
+- Hibernate
 
 ## Funcionalidades
 - Cadastro de pontos de acessibilidade  
 - Atualização de informações  
 - Exclusão de pontos  
 - Listagem completa  
-- Consulta por ID  
+- Consulta por nome
 - Cálculo automático do Índice de Acessibilidade  
 
 ## 🗂 Endpoints da API
