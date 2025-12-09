@@ -15,6 +15,10 @@ public class PontoAcessibilidadeService {
     @Autowired
     PontoAcessibilidadeRepository repository;
 
+    public List<PontoAcessibilidade> buscarPorNome(String nome) {
+        return repository.findByNomeLocal(nome);
+    }
+
     public List<PontoAcessibilidade> listarTodos() {
         List<PontoAcessibilidade> lista = repository.findAll();
         lista.forEach(p -> p.setIndiceAcessibilidade(calcularIndiceAcessibilidade(p)));
@@ -79,3 +83,4 @@ public class PontoAcessibilidadeService {
         return indice;
     }
 }
+
