@@ -27,7 +27,6 @@ O sistema também calcula automaticamente um Índice de Acessibilidade baseado n
 | POST | `/pontos-acessibilidade` | Cria um novo ponto |
 | PUT | `/pontos-acessibilidade/{id}` | Atualiza um ponto |
 | DELETE | `/pontos-acessibilidade/{id}` | Remove um ponto |
-| GET | `/pontos-acessibilidade/{id}/indice` | Calcula índice de acessibilidade |
 
 ## Cálculo do Índice de Acessibilidade
 Cada item soma 25 pontos:
