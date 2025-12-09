@@ -7,5 +7,8 @@ import java.util.List;
 
 public interface PontoAcessibilidadeRepository extends JpaRepository<PontoAcessibilidade, Long> {
 
+  List<PontoAcessibilidade> findByNomeLocal(String nomeLocal);
+  
 }
+
 
