@@ -75,15 +75,4 @@ public class PontoAcessibilidadeController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    @GetMapping("/{id}/indice")
-    public ResponseEntity<?> obterIndice(@PathVariable Long id) {
-        try {
-            int indice = service.calcularIndiceAcessibilidade(id);
-            return ResponseEntity.ok(indice);
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
 }
-
