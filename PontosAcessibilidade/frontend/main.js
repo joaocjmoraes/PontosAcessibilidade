@@ -5,7 +5,7 @@ const formTitle = document.getElementById("form-title");
 const statusMessage = document.getElementById("status-message");
  
 const inputId = document.getElementById("ponto-id");
-const inputBuscaId = document.getElementById("ponto-id-busca");
+const inputBuscaNome = document.getElementById("ponto-nome-busca");
  
 const inputNomeLocal = document.getElementById("nomeLocal");
 const inputEndereco = document.getElementById("endereco");
@@ -20,7 +20,7 @@ const selectAcessibilidadeGeral = document.getElementById("acessibilidadeGeral")
 const textDescricao = document.getElementById("descricao");
  
 const btnLimpar = document.getElementById("btn-limpar");
-const btnBuscarId = document.getElementById("btn-buscar-id");
+const btnBuscarNome = document.getElementById("btn-buscar-nome");
 const tbody = document.getElementById("pontos-tbody");
  
 function setStatusMessage(msg) {
@@ -182,31 +182,39 @@ async function carregarPontos() {
   }
 }
  
-async function buscarPontoPorId() {
-  const id = inputBuscaId.value.trim();
-  if (!id) {
-    setStatusMessage("Informe um ID para buscar.");
+async function buscarPontoPorNome() {
+  const nome = inputBuscaNome.value.trim();
+
+  if (!nome) {
+    setStatusMessage("Digite um nome para buscar.");
     return;
   }
- 
+
   try {
-    const resp = await fetch(`${API_URL}/${id}`);
+    const resp = await fetch(`${API_URL}/nome/${encodeURIComponent(nome)}`);
+
     if (resp.status === 404) {
-      setStatusMessage(`Ponto com ID ${id} não encontrado.`);
+      setStatusMessage("Nenhum ponto encontrado com esse nome.");
+      tbody.innerHTML = "";
       return;
     }
+
     if (!resp.ok) {
-      throw new Error("Erro ao buscar ponto por ID.");
+      throw new Error("Erro ao buscar por nome");
     }
- 
-    const ponto = await resp.json();
-    preencherFormulario(ponto);
-    setStatusMessage(`Ponto #${id} carregado no formulário.`);
+
+    const lista = await resp.json();
+
+    renderizarTabela(lista);
+
+    setStatusMessage(`${lista.length} ponto(s) encontrado(s).`);
   } catch (error) {
     console.error(error);
-    setStatusMessage("Erro ao buscar ponto.");
+    setStatusMessage("Erro ao buscar ponto por nome.");
   }
 }
+
+btnBuscarNome.addEventListener("click", buscarPontoPorNome);
  
 async function deletarPonto(id) {
   if (!confirm(`Deseja realmente excluir o ponto ${id}?`)) {
@@ -290,7 +298,5 @@ btnLimpar.addEventListener("click", (e) => {
   e.preventDefault();
   limparFormulario();
 });
- 
-btnBuscarId.addEventListener("click", buscarPontoPorId);
- 
+
 carregarPontos();
